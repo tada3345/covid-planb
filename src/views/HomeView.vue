@@ -42,8 +42,10 @@ export default {
   },
   methods: {
     async fetchCovidData() {
-      const res = await fetch('https://api.covid19api.com/summary');
-      // const res = await fetch('../components/api/api.json');
+      // const res = await fetch('https://api.covid19api.com/summary');
+      const res = await fetch(
+        'https://raw.githubusercontent.com/tada3345/covid-tracker/main/src/components/api/api.json'
+      );
       return await res.json();
     },
     getCountryData(country) {
@@ -62,7 +64,8 @@ export default {
     try {
       const data = await this.fetchCovidData();
       // this.dataDate = data.Date;
-      this.dataDate = new Date().toISOString();
+      // this.dataDate = new Date().toISOString();
+      this.dataDate = '2022-10-20T22:31:24.229Z';
       this.stats = data.Global;
       this.countries = data.Countries;
       this.loading = false;
